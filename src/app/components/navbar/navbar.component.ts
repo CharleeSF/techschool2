@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  toggle: boolean;
+  test: number;
+
+  constructor() {
+    this.toggle = false;
+    this.test = 5;
+  }
 
   ngOnInit() {
+  }
+
+  toggleCollapse() {
+    document.getElementById('navbarColor01').classList.toggle('collapse')
   }
 
 }
