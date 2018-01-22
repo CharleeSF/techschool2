@@ -1,3 +1,27 @@
-<p>
-  calendar works!
-</p>
+<div id="calendar-container" *ngIf="state!==undefined">
+  <h3>
+    <div>{{state.year}}</div>
+    <div>
+      <span (click)="changeMonth('previous')"><</span>
+      {{monthNames[state.month-1]}}
+      <span (click)="changeMonth('next')">></span>
+    </div>
+  </h3>
+  <table>
+    <tr>
+        <th *ngFor="let dayname of ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']"><p>{{dayname}}</p></th>
+    </tr>
+    <tr id="week-list" *ngFor="let week of state.weeks">
+      <td id="day-list" *ngFor="let day of week.days">
+        <section id="day-container" *ngIf="day!==undefined">
+          <p id="daynum">{{day.monthNum}}</p>
+          <section *ngIf="day.events.length>0" class="events">
+            <p *ngFor="let event of day.events" class="event" [class.lecture]="event.isLecture">
+              {{event.description}}
+            </p>
+          </section>
+        </section>
+      </td>
+    </tr>
+  </table>
+</div>
